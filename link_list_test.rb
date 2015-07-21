@@ -53,7 +53,7 @@ class LinkListTest < Minitest::Test
     list.append(node2)
     list.append(node3)
     list.append(node4)
-    assert list.include?(node3)
+    assert list.includes?("2")
   end
 
   def test_node_is_not_included_in_list
@@ -64,6 +64,6 @@ class LinkListTest < Minitest::Test
     list.append(node)
     list.append(node2)
     list.append(node4)
-    assert list.include?("4")
+    refute list.includes?("3")
   end
 end

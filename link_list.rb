@@ -32,8 +32,14 @@ class LinkList
     new_node.next_node = after
   end
 
-  def include?(node)
-    @head = 
+  def includes?(data)
+    current = @head
+    until current.data == data || current.next_node == nil
+      current = current.next_node
+
+    end
+    current.data == data
+  end
 end
 
   #for pop, set current.next_node.next_node == nil

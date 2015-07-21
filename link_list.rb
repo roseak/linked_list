@@ -1,0 +1,39 @@
+require './node'
+
+class LinkList
+  attr_accessor :head
+
+  def initialize(node = nil)
+    @head = node
+  end
+
+  def append(node)
+    if @head == nil
+      @head = node
+    else
+      current = @head
+      until current.next_node == nil
+        current = current.next_node
+      end
+      current.next_node = node
+    end
+  end
+
+  def prepend(node)
+    node.next_node = @head
+    @head = node
+  end
+
+  def insert(new_node, position)
+    before = @head
+    (position-1).times {before = before.next_node}
+    after = before.next_node
+    before.next_node = new_node
+    new_node.next_node = after
+  end
+
+  def include?(node)
+    @head = 
+end
+
+  #for pop, set current.next_node.next_node == nil

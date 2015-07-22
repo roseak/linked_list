@@ -66,4 +66,31 @@ class LinkListTest < Minitest::Test
     list.append(node4)
     refute list.includes?("3")
   end
+
+  def test_pop_returns_the_last_node
+    list = LinkList.new
+    node = Node.new("1")
+    node2 = Node.new("2")
+    node3 = Node.new("3")
+    node4 = Node.new("4")
+    list.append(node)
+    list.append(node2)
+    list.append(node3)
+    list.append(node4)
+    assert_equal node4, list.pop
+  end
+
+  def test_pop_removes_node_from_list
+    list = LinkList.new
+    node = Node.new("1")
+    node2 = Node.new("2")
+    node3 = Node.new("3")
+    node4 = Node.new("4")
+    list.append(node)
+    list.append(node2)
+    list.append(node3)
+    list.append(node4)
+    list.pop
+    refute list.includes?("4")
+  end
 end

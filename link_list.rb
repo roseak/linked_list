@@ -49,6 +49,14 @@ class LinkList
     current.next_node = nil
     result
   end
-end
 
-  #for pop, set current.next_node.next_node == nil
+  def count
+    counter = 1
+    current = @head
+    until current.next_node == nil
+      counter += 1
+      current = current.next_node
+    end
+    counter
+  end
+end

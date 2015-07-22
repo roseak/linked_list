@@ -13,4 +13,9 @@ class NodeTest < Minitest::Test
     node = Node.new
     assert_equal nil, node.data
   end
+
+  def test_node_knows_if_it_is_the_tail
+    node = Node.new
+    assert node.tail?
+  end
 end

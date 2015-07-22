@@ -106,4 +106,30 @@ class LinkListTest < Minitest::Test
     list.append(node4)
     assert_equal 4, list.count
   end
+
+  def test_head_returns_first_node
+    list = LinkList.new
+    node = Node.new("1")
+    node2 = Node.new("2")
+    node3 = Node.new("3")
+    node4 = Node.new("4")
+    list.append(node)
+    list.append(node2)
+    list.append(node3)
+    list.append(node4)
+    assert_equal node, list.head
+  end
+
+  def test_tail_returns_last_node
+    list = LinkList.new
+    node = Node.new("1")
+    node2 = Node.new("2")
+    node3 = Node.new("3")
+    node4 = Node.new("4")
+    list.append(node)
+    list.append(node2)
+    list.append(node3)
+    list.append(node4)
+    assert_equal node4, list.tail
+  end
 end

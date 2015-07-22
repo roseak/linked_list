@@ -59,4 +59,13 @@ class LinkList
     end
     counter
   end
+
+  def tail
+    current = @head
+    until current.tail?
+      current = current.next_node
+    end
+    current
+  end
+
 end

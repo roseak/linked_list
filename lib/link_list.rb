@@ -3,46 +3,49 @@ require './node'
 class LinkList
   attr_accessor :head
 
-  def initialize(node = nil)
-    @head = node
+  def initialize(data = nil)
+    @head = nil
   end
 
-  def append(node)
+  def append(data)
     if @head == nil
-      @head = node
+      @head = Node.new(data)
     else
       current = @head
-      until current.next_node == nil
+      until current.tail?
         current = current.next_node
       end
-      current.next_node = node
+      current.next_node = Node.new(data)
     end
   end
 
-  def prepend(node)
+  def prepend(data)
+    node = Node.new(data)
     node.next_node = @head
     @head = node
   end
 
-  def insert(new_node, position)
+  def insert(data, position)
+    return "error" if position < 0 || position > count
     before = @head
     (position-1).times {before = before.next_node}
     after = before.next_node
-    before.next_node = new_node
-    new_node.next_node = after
+    before.next_node = Node.new(data)
+    before.next_node.next_node = after
   end
 
   def includes?(data)
     current = @head
-    until current.data == data || current.next_node == nil
+    until current.data == data || current.tail?
       current = current.next_node
     end
     current.data == data
   end
 
   def pop
+    return if count == 1
     current = @head
-    until current.next_node.next_node == nil
+    until current.next_node.tail?
       current = current.next_node
     end
     result = current.next_node
@@ -53,7 +56,7 @@ class LinkList
   def count
     counter = 1
     current = @head
-    until current.next_node == nil
+    until current.tail?
       counter += 1
       current = current.next_node
     end
@@ -78,7 +81,7 @@ class LinkList
   def find_by_value(data)
     current = @head
     position = 0
-    until current == nil
+    until current == tail
       return position if current.data == data
       current = current.next_node
       position += 1
@@ -102,4 +105,8 @@ class LinkList
     end
   end
 
+  def distance(data1, data2)
+    return if find_by_value(data1) == nil || find_by_value(data2) == nil
+    (find_by_value(data2)-find_by_value(data1)).abs
+  end
 end
